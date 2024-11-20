@@ -109,7 +109,9 @@ a{
 }
 
 /* user */
-#user-btn{
+#user-btn,
+.search-btn
+{
     font-size: 1.5rem; margin-right: 3rem;
     background-color: var(--grey);
     padding: .8rem 1rem .8rem 1rem;
