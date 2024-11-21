@@ -6,26 +6,50 @@ document.querySelector('#user-btn').onclick = () => {
 
 // admission-slide-show
 
-let slideIndex = 0;
-const slideShow = document.querySelector('.stg-box');
-const slides = document.querySelectorAll('.slide-show');
+let list = document.querySelector('.slider .stg-box');
+let items = document.querySelectorAll('.slider .stg-box .slide-show');
+let dots = document.querySelectorAll('.admission-slide-show .dots li');
+let prev = document.getElementById('prev-slide');
+let next = document.getElementById('next-slide');
 
-const showSlide = (index) => {
-    let slideWidth = slides[0].offsetWidth;
-    slideShow.style.transform = 'translateX(' + (-slideWidth * index) + 'px)';
+let active = 0;
+let lengthItems = items.length - 1;
+
+next.onclick = function(){
+    if(active + 1 > lengthItems) active = 0;
+    else active += 1;
+    reloadSlider();
 }
 
-document.querySelector('#prev-slide').onclick = () => {
-    slideIndex = (slideIndex > 0) ? slideIndex - 1 : slides.length - 1;
-    showSlide(slideIndex);
+prev.onclick = function(){
+    if(active - 1 < 0) active = lengthItems;
+    else active -= 1;
+    reloadSlider();
 }
 
-document.querySelector('#next-slide').onclick = () => {
-    slideIndex = (slideIndex < slides.length - 1) ? slideIndex + 1 : 0;
-    showSlide(slideIndex);
+let autoSlide = setInterval( () => {next.click()}, 7000);
+
+function reloadSlider()
+{
+    let checkLeft = items[active].offsetLeft;
+    list.style.left = -checkLeft + 'px'
+    
+    let lastActive = document.querySelector('.admission-slide-show .dots li.dot-active');
+    lastActive.classList.remove('dot-active');
+    dots[active].classList.add('dot-active');
+
+    clearInterval(autoSlide);
+    autoSlide = setInterval( () => {next.click()}, 7000);
 }
 
-showSlide(slideIndex);
+
+
+dots.forEach((li, key) => {
+    li.addEventListener('click', function(){
+        active = key;
+        reloadSlider();
+    } )
+} )
 
 //admission-method
 
@@ -37,5 +61,5 @@ document.querySelectorAll('.method-title').forEach(item => {
         });
         item.classList.toggle('active');
     });
-
 });
+
