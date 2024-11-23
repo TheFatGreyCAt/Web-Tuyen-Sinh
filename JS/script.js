@@ -49,17 +49,32 @@ dots.forEach((li, key) => {
         active = key;
         reloadSlider();
     } )
+
 } )
 
 //admission-method
 
-document.querySelectorAll('.method-title').forEach(item => {
+let firstMethod = document.querySelectorAll('.method-title')[0];
+firstMethod.classList.toggle('active');
+
+document.querySelectorAll('.method-title').forEach((item, index) => {
     item.addEventListener('click', event => {
 
         document.querySelectorAll('.method-title').forEach(item => {
             item.classList.remove('active');
         });
         item.classList.toggle('active');
+        
+        document.querySelectorAll('.method-review').forEach(item => {
+            item.classList.remove('method-active');
+        });
+
+        let actMethod = document.querySelectorAll('.method-review')[index];
+        actMethod.classList.toggle('method-active');
+
     });
+
+    
+
 });
 
