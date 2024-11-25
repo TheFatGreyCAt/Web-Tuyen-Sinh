@@ -78,3 +78,30 @@ document.querySelectorAll('.method-title').forEach((item, index) => {
 
 });
 
+// news
+
+let newsList = document.querySelector('.news-content .news-slideshow');
+let newsItems = document.querySelectorAll('.news-content .news-slideshow .slide-box');
+
+let newsPrev = document.getElementById('news-prev-slide');
+let newsNext = document.getElementById('news-next-slide');
+
+let newsActive = 0;
+let newsLengthItems = (newsItems.length - 1)*3; //fix this
+console.log(newsLengthItems);
+newsNext.onclick = function() {
+    if (newsActive + 1 > newsLengthItems) newsActive = 0;
+    else newsActive += 1;
+    newsReloadSlider();
+}
+
+newsPrev.onclick = function() {
+    if (newsActive - 1 < 0) newsActive = newsLengthItems;
+    else newsActive -= 1;
+    newsReloadSlider();
+}
+
+function newsReloadSlider() {
+    let newCheckLeft = newsItems[newsActive].offsetLeft/3; //fix this
+    newsList.style.left = -newCheckLeft + 'px';
+}
