@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 5% 40%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- bai1 -->
+
+    <div>
+        <input type="text" placeholder="Name..." id="tx-box" onchange="inputData()">
+        <button type="submit" id="btn-submit" onclick="sendData()">
+            Send
+        </button>
+    </div>
+    
+    <!-- bai2 -->
+
+
+
+    <script>
+        // bai1
+        let name = '';
+        function inputData()
+        {
+            name = document.querySelector("#tx-box").value;
+            localStorage.setItem('username',name);
+            let stg = localStorage.getItem('username');
+        }
+
+        // function sendData()
+        // {   
+        //     inputData();
+        //     let stg = localStorage.getItem('username');
+        //     document.write('Hello, ' + stg + ' !');
+        // }
+
+        function sendData()
+        {   
+            inputData();
+            document.write('<b>List : </b>');
+            document.write('<ul>');
+            
+            document.write('</ul>');
+        }
+
+
+
+        // let user = {
+        //     name : "Nguyen Hoang Tung",
+        //     age : 23,
+        //     skills : ["JS", "HTML", "CSS"],
+        // };
+        // console.log(user);
+        // let userJSON = JSON.stringify(user);
+        // console.log(userJSON);
+        // localStorage.setItem("user", userJSON);
+
+        // let userObj = JSON.parse(userJSON);
+        // console.log(userObj);
+
+
+
+
+        // bai2
+
+    </script>
+</body>
+</html>
